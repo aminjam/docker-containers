@@ -1,4 +1,4 @@
-# DOCKER-VERSION 1.2.0
+# DOCKER-VERSION 1.3.0
 FROM ubuntu:latest
 MAINTAINER Amin Jams "aminjam@outlook.com"
 
@@ -26,3 +26,4 @@ RUN chmod +x /*.sh
 RUN echo 'node:' `node --version` 'npm' `npm --version`
 EXPOSE 3001
 WORKDIR /home/app
+CMD ["/run.sh"]

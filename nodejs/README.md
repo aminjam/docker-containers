@@ -1,7 +1,7 @@
 ## Node.js Dockerfile
 
 
-This repository contains **Dockerfile** of [Node.js](http://nodejs.org/) for [Docker](https://www.docker.com/)'s [automated build](https://github.com/aminjam/docker-containers/tree/nodejs/nodejs) published to the public [Docker Hub Registry](https://registry.hub.docker.com/u/aminjam/nodejs).
+This repository contains **Dockerfile** of [Node.js](http://nodejs.org/) for [Docker](https://www.docker.com/)'s [automated build](https://github.com/aminjam/docker-containers/tree/nodejs/nodejs) published to the public [Docker Hub Registry](https://registry.hub.docker.com/u/aminjam/nodejs). This container image has the size of `346 MB`.
 
 ### Base Docker Image
 

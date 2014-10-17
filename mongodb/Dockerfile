@@ -24,6 +24,7 @@ RUN apt-get -qy install supervisor
 # Add configurations
 ADD supervisord-app.conf /etc/supervisor/conf.d/supervisord-app.conf
 ADD run.sh /run.sh
+ADD start-app.sh /start-app.sh
 RUN chmod +x /*.sh
 ##################### INSTALLATION END #####################
 

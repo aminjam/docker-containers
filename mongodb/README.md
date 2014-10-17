@@ -8,8 +8,6 @@ This repository contains **Dockerfile** of [MongoDB](http://www.mongodb.org/) fo
 * [debian:wheezy](https://registry.hub.docker.com/_/debian/)
 
 ### Usage `docker run`
-
-#### default
     -d aminjam/mongodb
 
 #### w/ persistent/shared directory
@@ -19,4 +17,4 @@ This repository contains **Dockerfile** of [MongoDB](http://www.mongodb.org/) fo
     -e MONGO_OPTIONS="--smallfiles --rest" -d aminjam/mongodb
 
 #### w/ custom `run.sh`
-    -v <path-to-custom-run.sh>:/my-run.sh -d aminjam/mongodb my-run.sh
+    -v <path-to-custom-run.sh>:/my-run.sh -d aminjam/mongodb /my-run.sh

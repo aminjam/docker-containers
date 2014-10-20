@@ -9,15 +9,13 @@ Couchbase requires a lot of (over 100) ports to be open due the baked-in master-
 
 ### Usage `docker run`
   - First server in the cluster
-
-
-    --net="host" -e COUCHBASE_USER=admin -e COUCHBASE_PASS=password -d aminjam/couchbase cluster-init
-
+```
+--net="host" -e COUCHBASE_USER=admin -e COUCHBASE_PASS=password -d aminjam/couchbase cluster-init
+```
   - Other servers in the cluster (assuming the first server has the IP of 172.20.21.10)
-
-
-    --net="host" -e COUCHBASE_USER=admin -e COUCHBASE_PASS=password -e COUCHBASE_SERVER=172.20.21.10 -d aminjam/couchbase rebalance
-
+```
+--net="host" -e COUCHBASE_USER=admin -e COUCHBASE_PASS=password -e COUCHBASE_SERVER=172.20.21.10 -d aminjam/couchbase rebalance
+```
 #### Running any couchbase-cli command
     --rm aminjam/couchbase server-info -c 172.20.21.10:8091 -u admin -p password
 

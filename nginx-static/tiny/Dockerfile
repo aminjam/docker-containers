@@ -1,0 +1,20 @@
+FROM scratch
+MAINTAINER Amin Jams <aminjam@outlook.com>
+
+ADD ./rootfs.tar /
+
+RUN mkdir -p /var/lib/nginx
+
+RUN rm /etc/nginx/nginx.conf /etc/nginx/mime.types
+ADD nginx.conf /etc/nginx/nginx.conf
+ADD mime.types /etc/nginx/mime.types
+RUN mkdir /etc/nginx/ssl
+ADD default /etc/nginx/sites-enabled/default
+ADD default-ssl /etc/nginx/sites-available/default-ssl
+RUN mkdir -p /home/app
+##################### INSTALLATION END #####################
+
+RUN echo 'nginx:' `nginx -v`
+EXPOSE 80 443
+WORKDIR /home/app
+CMD ["nginx"]

@@ -1,13 +1,12 @@
 ## Nginx-Proxy Dockerfile
 
-
-This repository contains **Dockerfile** of [Nginx](http://nginx.org/) for [Docker](https://www.docker.com/)'s [automated build](https://github.com/aminjam/docker-containers/tree/nginx-proxy) published to the public [Docker Hub Registry](https://registry.hub.docker.com/u/aminjam/nginx-proxy/). This container image has the size of `142 MB`.
+This repository contains **Dockerfile** of [Nginx](http://nginx.org/) for [Docker](https://www.docker.com/)'s [automated build](https://github.com/aminjam/docker-containers/tree/nginx-proxy) published to the public [Docker Hub Registry](https://registry.hub.docker.com/u/aminjam/nginx-proxy/).
 This container is using [forego](https://github.com/ddollar/forego) and [docker-gen](https://github.com/jwilder/docker-gen) for auto-generating reverse proxy configs for `nginx` and reloads `nginx` when containers are started and stopped.
 This is a copy of [jwilder](https://registry.hub.docker.com/u/jwilder/nginx-proxy/) image with a `debian:wheezy` base for smaller footprint.
 
-### Base Docker Image
-
-* [debian:wheezy](https://registry.hub.docker.com/_/debian/)
+### Base Docker Image & Size
+* `latest` tag ~`127MB` from [debian:wheezy](https://registry.hub.docker.com/_/debian/)
+* `tiny` tag ~ `32MB`  from scratch based on [progrium/rootbuilder](https://registry.hub.docker.com/u/progrium/rootbuilder/)
 
 ### Usage `docker run`
 

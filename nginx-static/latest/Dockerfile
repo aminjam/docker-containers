@@ -12,11 +12,11 @@ RUN apt-get update
 RUN apt-get install -y nginx
 
 RUN rm /etc/nginx/nginx.conf /etc/nginx/mime.types
-ADD nginx.conf /etc/nginx/nginx.conf
-ADD mime.types /etc/nginx/mime.types
 RUN mkdir /etc/nginx/ssl
-ADD default /etc/nginx/sites-enabled/default
-ADD default-ssl /etc/nginx/sites-available/default-ssl
+ADD ./app-config/nginx.conf /etc/nginx/nginx.conf
+ADD ./app-config/mime.types /etc/nginx/mime.types
+ADD ./app-config/default /etc/nginx/sites-enabled/default
+ADD ./app-config/default-ssl /etc/nginx/sites-available/default-ssl
 RUN mkdir -p /home/app
 ##################### INSTALLATION END #####################
 

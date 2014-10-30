@@ -6,7 +6,7 @@ This container only display static html content.
 
 ### Base Docker Image & Size
 * `latest` tag ~`100MB` from [debian:wheezy](https://registry.hub.docker.com/_/debian/)
-* `tiny` tag ~ `7MB` (smallest nginx container) from [progrium/rootbuilder](https://registry.hub.docker.com/u/progrium/rootbuilder/)
+* `tiny` tag ~ `7MB` (smallest nginx container) from scratch based on [progrium/rootbuilder](https://registry.hub.docker.com/u/progrium/rootbuilder/)
 
 ### Usage `docker run`
 You can optionally pass `ro` (read-only) flag for added security.

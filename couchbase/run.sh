@@ -27,7 +27,12 @@ get_ip() {
   local eth1=$(ip addr show dev eth1 | sed -e's/^.*inet \([^ ]*\)\/.*$/\1/;t;d')
   if [[ -z "$eth1" ]]; then
     local eth0=$(ip addr show dev eth0 | sed -e's/^.*inet \([^ ]*\)\/.*$/\1/;t;d')
-    echo $eth0
+    if [[ -z "$eth0" ]]; then
+      local enp0s8=$(ip addr show dev enp0s8 | sed -e's/^.*inet \([^ ]*\)\/.*$/\1/;t;d')
+      echo $enp0s8
+    else
+      echo $eth0
+    fi
   else
     echo $eth1
   fi

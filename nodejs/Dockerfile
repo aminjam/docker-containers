@@ -1,15 +1,15 @@
 FROM ubuntu:latest
-MAINTAINER Amin Jams "aminjam@outlook.com"
+MAINTAINER Amin Jams <aminjam@outlook.com>
 
 RUN apt-get update && \
   apt-get -y upgrade && \
   apt-get autoremove && \
   apt-get autoclean && \
   apt-get clean
-RUN apt-get install -qy curl git
+RUN apt-get install -qy curl git g++ make
 RUN curl -qsL https://deb.nodesource.com/setup | sudo bash -
 RUN apt-get install -qy nodejs
-RUN npm install -g bower grunt-cli
+RUN npm install -g bower grunt-cli node-gyp
 
 # Install Supervisor
 RUN apt-get -qy install supervisor

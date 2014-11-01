@@ -66,9 +66,9 @@ rebalance() {
   start /opt/couchbase/bin/couchbase-cli rebalance -c $COUCHBASE_SERVER:8091 -u "$COUCHBASE_USER" -p "$COUCHBASE_PASS" --server-add=$ip:8091 --server-add-username="$COUCHBASE_USER" --server-add-password="$COUCHBASE_PASS"
 }
 
-couchbase_cli() {
+cli() {
   CLI="true"
-  start /opt/couchbase/bin/couchbase-cli $@
+  start $@
 }
 
 main() {
@@ -81,7 +81,7 @@ main() {
   case "$1" in
   cluster-init)    cluster_init;;
   rebalance)       rebalance;;
-  *)               couchbase_cli $@;;
+  *)               cli $@;;
   esac
 
   trap_exit

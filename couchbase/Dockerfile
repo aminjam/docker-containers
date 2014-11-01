@@ -1,5 +1,5 @@
 FROM debian:stable
-MAINTAINER Amin Jams "aminjam@outlook.com"
+MAINTAINER Amin Jams <aminjam@outlook.com>
 
 ################## BEGIN INSTALLATION ######################
 RUN export DEBIAN_FRONTEND=noninteractive && \
@@ -12,6 +12,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
   rm couchbase-server-enterprise.deb
 
 # Add configurations
+ENV PATH /opt/couchbase/bin:/opt/couchbase/bin/tools:$PATH
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
 ##################### INSTALLATION END #####################

@@ -9,17 +9,19 @@ Couchbase requires a lot of (over 100) ports to be open due the baked-in master-
 
 ### Usage `docker run`
   - First server in the cluster
-```
---net="host" -e COUCHBASE_USER=admin -e COUCHBASE_PASS=password -d aminjam/couchbase cluster-init
-```
+        --net="host" -e COUCHBASE_USER=admin -e COUCHBASE_PASS=password -d aminjam/couchbase cluster-init
+
 
   - Other servers in the cluster (assuming the first server has the IP of 172.20.21.10)
-```
---net="host" -e COUCHBASE_USER=admin -e COUCHBASE_PASS=password -e COUCHBASE_SERVER=172.20.21.10 -d aminjam/couchbase rebalance
-```
+        --net="host" -e COUCHBASE_USER=admin -e COUCHBASE_PASS=password -e COUCHBASE_SERVER=172.20.21.10 -d aminjam/couchbase rebalance
 
-#### Running any couchbase-cli command
-    --rm aminjam/couchbase server-info -c 172.20.21.10:8091 -u admin -p password
+
+#### Running [any cli command](http://docs.couchbase.com/admin/admin/cli-intro.html)
+  - `couchbase-cli` example
+        docker run --rm aminjam/couchbase couchbase-cli server-info -c 172.20.21.10:8091 -u admin -p password
+  - `cbdocloader` example for loading `beer-sample.zip` into couchbase
+        docker run --rm aminjam/couchbase cbdocloader -n 172.20.21.10:8091 -u admin -p password -b beer-sample /opt/couchbase/samples/beer-sample.zip
+
 
 ### TODO
 - currently data persistency `-v <path-to-data>:/opt/couchbase/var/lib/couchbase/` in the host is not working.

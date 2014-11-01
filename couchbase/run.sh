@@ -48,6 +48,14 @@ trap_exit() {
     fi
 }
 
+check_data_persistence(){
+  if [[ -n "$COUCHBASE_DATA" ]]; then
+    echo "change data path owner to couchbase"
+    chown -R couchbase $COUCHBASE_DATA
+    echo "initializing node..."
+    start /opt/couchbase/bin/couchbase-cli node-init -c $ip:8091 -u "$COUCHBASE_USER" -p "$COUCHBASE_PASS" --node-init-data-path=$COUCHBASE_DATA
+  fi
+}
 
 cluster_init() {
   check
@@ -55,6 +63,7 @@ cluster_init() {
   if [ -z "$CLUSTER_RAM_SIZE" ]; then
     CLUSTER_RAM_SIZE=256
   fi
+  check_data_persistence
   echo "initializing cluster..."
   start /opt/couchbase/bin/couchbase-cli cluster-init -c $ip:8091 -u "$COUCHBASE_USER" -p "$COUCHBASE_PASS" --cluster-init-ramsize=$CLUSTER_RAM_SIZE --cluster-username="$COUCHBASE_USER" --cluster-password="$COUCHBASE_PASS"
 }
@@ -62,6 +71,7 @@ cluster_init() {
 rebalance() {
   check
   local ip=$(get_ip)
+  check_data_persistence
   echo "adding server with rebalance..."
   start /opt/couchbase/bin/couchbase-cli rebalance -c $COUCHBASE_SERVER:8091 -u "$COUCHBASE_USER" -p "$COUCHBASE_PASS" --server-add=$ip:8091 --server-add-username="$COUCHBASE_USER" --server-add-password="$COUCHBASE_PASS"
 }

@@ -7,14 +7,14 @@ This repository contains **Dockerfile** of [hipops](https://github.com/aminjam/h
 
 * `latest` tag ~`390MB` from [debian:stable](https://registry.hub.docker.com/_/debian/)
 
-### Usage `docker run`
-Assuming you have the convention for `hipops` configuration. More example are [available here](https://github.com/aminjam/hipops-examples/tree/master/scenarios).
+####`hipops` convention
 ```
 ./config.json
 ./hosts/local
 ```
+More example are [available here](https://github.com/aminjam/hipops-examples/tree/master/scenarios).
 
-You can then run
+### Usage `docker run`
 ```
 -v <data-dir>:/home/app -v <git-key-file>:/home/git.key -v <ssh-private-key-file>:/home/vagrant.key -e GIT_KEY=/home/git.key -e PRIVATE_KEY=/home/vagrant.key -d aminjam/hipops-ansible
 ```

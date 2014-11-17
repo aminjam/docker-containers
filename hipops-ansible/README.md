@@ -13,7 +13,8 @@ Assuming you have the convention for `hipops` configuration. More example are [a
 ./config.json
 ./hosts/local
 ```
-You can run
+
+You can then run
 ```
 -v <data-dir>:/home/app -v <git-key-file>:/home/git.key -v <ssh-private-key-file>:/home/vagrant.key -e GIT_KEY=/home/git.key -e PRIVATE_KEY=/home/vagrant.key -d aminjam/hipops-ansible
 ```

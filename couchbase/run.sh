@@ -85,7 +85,7 @@ main() {
   set -o pipefail
 
   echo "starting couchbase"
-  /etc/init.d/couchbase-server restart
+  /etc/init.d/couchbase-server start
 
   case "$1" in
   cluster-init)    cluster_init;;

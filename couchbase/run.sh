@@ -37,14 +37,11 @@ get_ip() {
   fi
 }
 
-trap_exit() {
-    trap "/etc/init.d/couchbase-server stop" exit INT TERM
+wait_for_shutdown() {
+  local pid_file=/opt/couchbase/var/lib/couchbase/couchbase-server.pid
 
-    local pid_file=/opt/couchbase/var/lib/couchbase/couchbase-server.pid
-    # can't use 'wait $(<"$pid_file")' as process not child of shell
-    if [[ "$CLI" != "true" ]]; then
-      while [ -e /proc/$(<"$pid_file") ]; do sleep 5; done
-    fi
+  # can't use 'wait $(<"$pid_file")' as process not child of shell
+  while [ -e /proc/$(<"$pid_file") ]; do sleep 5; done
 }
 
 check_data_persistence() {
@@ -80,20 +77,22 @@ cli() {
   start $@
 }
 
+start_couchbase() {
+  echo "starting couchbase"
+  /etc/init.d/couchbase-server start
+
+  trap "/etc/init.d/couchbase-server stop" exit INT TERM
+}
+
 main() {
   set +e
   set -o pipefail
 
-  echo "starting couchbase"
-  /etc/init.d/couchbase-server start
-
   case "$1" in
-  cluster-init)    cluster_init;;
-  rebalance)       rebalance;;
+  cluster-init)    start_couchbase && cluster_init && wait_for_shutdown;;
+  rebalance)       start_couchbase && rebalance    && wait_for_shutdown;;
   *)               cli $@;;
   esac
-
-  trap_exit
 }
 
 main "$@"

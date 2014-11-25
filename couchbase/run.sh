@@ -1,4 +1,5 @@
 #!/bin/bash
+
 check() {
   if [ -z "$COUCHBASE_USER" ] || [ -z "$COUCHBASE_PASS" ]; then
     echo >&2 "error: Couchbase not initialized. Please make sure COUCHBASE_USER and COUCHBASE_PASS are set."
@@ -7,22 +8,20 @@ check() {
 }
 
 start() {
-  COUNTER=1
+  local counter=1
   "$@"
-  while [ $? -ne 0 ]
-  do
-    if [[ "$CLI" == "true" && "$COUNTER" -ge 10 ]]; then
+  while [ $? -ne 0 ]; do
+    if [[ "$CLI" == "true" && "$counter" -ge 10 ]]; then
       echo "server didn't start in 50 seconds, exiting now..."
       exit
     fi
-    COUNTER=$[$COUNTER +1]
+    counter=$[$counter +1]
     echo "waiting for couchbase to start..."
     sleep 5
     "$@"
   done
 }
 
-#!/bin/bash
 get_ip() {
   local eth1=$(ip addr show dev eth1 | sed -e's/^.*inet \([^ ]*\)\/.*$/\1/;t;d')
   if [[ -z "$eth1" ]]; then
@@ -38,17 +37,14 @@ get_ip() {
   fi
 }
 
-trap_exit() {
-    trap "/etc/init.d/couchbase-server stop" exit INT TERM
+wait_for_shutdown() {
+  local pid_file=/opt/couchbase/var/lib/couchbase/couchbase-server.pid
 
-    pid_file=/opt/couchbase/var/lib/couchbase/couchbase-server.pid
-    # can't use 'wait $(<"$pid_file")' as process not child of shell
-    if [[ "$CLI" != "true" ]]; then
-      while [ -e /proc/$(<"$pid_file") ]; do sleep 5; done
-    fi
+  # can't use 'wait $(<"$pid_file")' as process not child of shell
+  while [ -e /proc/$(<"$pid_file") ]; do sleep 5; done
 }
 
-check_data_persistence(){
+check_data_persistence() {
   if [[ -n "$COUCHBASE_DATA" ]]; then
     echo "change data path owner to couchbase"
     chown -R couchbase $COUCHBASE_DATA
@@ -81,20 +77,22 @@ cli() {
   start $@
 }
 
+start_couchbase() {
+  echo "starting couchbase"
+  /etc/init.d/couchbase-server start
+
+  trap "/etc/init.d/couchbase-server stop" exit INT TERM
+}
+
 main() {
   set +e
   set -o pipefail
 
-  echo 'starting couchbase'
-  /etc/init.d/couchbase-server restart
-
   case "$1" in
-  cluster-init)    cluster_init;;
-  rebalance)       rebalance;;
+  cluster-init)    start_couchbase && cluster_init && wait_for_shutdown;;
+  rebalance)       start_couchbase && rebalance    && wait_for_shutdown;;
   *)               cli $@;;
   esac
-
-  trap_exit
 }
 
 main "$@"

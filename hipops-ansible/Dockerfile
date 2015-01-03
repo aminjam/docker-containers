@@ -7,11 +7,11 @@ RUN apt-get update && \
   apt-get autoclean && \
   apt-get clean
 RUN apt-get install -qy python-pip python-dev python-crypto git wget unzip
-RUN yes w | pip install paramiko PyYAML Jinja2 httplib2 ansible boto
+RUN yes w | pip install paramiko PyYAML Jinja2 httplib2 boto ansible==1.7.2
 ENV ANSIBLE_HOST_KEY_CHECKING False
 
 ##hipops installation
-RUN wget -q --no-check-certificate https://github.com/aminjam/hipops/releases/download/0.1.0/hipops-linux-amd64 -O /usr/bin/hipops
+RUN wget -q --no-check-certificate https://github.com/aminjam/hipops/releases/download/0.1.2/hipops-linux-amd64 -O /usr/bin/hipops
 RUN chmod u+x /usr/bin/hipops
 
 #hipops-ansible default playbooks

@@ -89,9 +89,9 @@ main() {
   set -o pipefail
 
   case "$1" in
-  cluster-init)    start_couchbase && cluster_init && wait_for_shutdown;;
-  rebalance)       start_couchbase && rebalance    && wait_for_shutdown;;
-  *)               cli $@;;
+    cluster-init)    start_couchbase && cluster_init && wait_for_shutdown;;
+    rebalance)       start_couchbase && rebalance    && wait_for_shutdown;;
+    *)               cli $@;;
   esac
 }
 

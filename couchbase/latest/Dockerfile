@@ -7,7 +7,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get -y install wget libssl1.0.0 python && \
-  wget -q http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise_3.0.0-debian7_amd64.deb -O couchbase-server-enterprise.deb && \
+  wget -q http://packages.couchbase.com/releases/3.0.2/couchbase-server-enterprise_3.0.2-debian7_amd64.deb -O couchbase-server-enterprise.deb && \
   dpkg -i couchbase-server-enterprise.deb && \
   rm couchbase-server-enterprise.deb
 

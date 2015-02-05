@@ -6,7 +6,6 @@ Couchbase requires a lot of (over 100) ports to be open due to the baked-in mast
 
 ### Base Docker Image & Size
 
-* `latest` tag ~`657MB` from [debian:wheezy](https://registry.hub.docker.com/_/debian/) `v3.0.2`
 * `community` tag ~`657MB` from [debian:wheezy](https://registry.hub.docker.com/_/debian/) `v3.0.1`
 
 ### Usage `docker run`

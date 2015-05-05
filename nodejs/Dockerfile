@@ -7,7 +7,7 @@ RUN apt-get update && \
   apt-get autoclean && \
   apt-get clean
 RUN apt-get install -qy curl git g++ make
-RUN curl -qsL https://deb.nodesource.com/setup | sudo bash -
+RUN curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
 RUN apt-get install -qy nodejs
 RUN npm install -g npm
 RUN npm install -g bower grunt-cli node-gyp

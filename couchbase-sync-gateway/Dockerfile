@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM debian:latest
 MAINTAINER Amin Jams <aminjam@outlook.com>
 
 ################## BEGIN INSTALLATION ######################
@@ -8,7 +8,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y wget && \
-  wget -q http://packages.couchbase.com/releases/couchbase-sync-gateway/${SYNC_GATEWAY_VERSION}/couchbase-sync-gateway-enterprise_${SYNC_GATEWAY_VERSION}_x86_64.deb -O package.deb && \
+  wget -q http://packages.couchbase.com/releases/couchbase-sync-gateway/${SYNC_GATEWAY_VERSION}/couchbase-sync-gateway-community_${SYNC_GATEWAY_VERSION}_x86_64.deb -O package.deb && \
   dpkg -i package.deb && \
   rm package.deb
 

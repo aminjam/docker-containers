@@ -5,7 +5,7 @@ This repository contains **Dockerfile** of [sync_gateway](https://github.com/cou
 
 ### Base Docker Image & Size
 
-* `latest` tag ~`120MB` from [debian:stable](https://registry.hub.docker.com/_/debian/)
+* `latest` tag ~`190MB` from [debian:latest](https://registry.hub.docker.com/_/debian/)
 
 ### Usage `docker run`
     -v <path-for-config.json>:/config.json -d aminjam/couchbase-sync-gateway /config.json

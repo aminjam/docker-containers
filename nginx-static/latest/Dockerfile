@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM debian:stable
 MAINTAINER Amin Jams <aminjam@outlook.com>
 
 RUN apt-get update && \
@@ -18,6 +18,9 @@ ADD ./app-config/mime.types /etc/nginx/mime.types
 ADD ./app-config/default /etc/nginx/sites-enabled/default
 ADD ./app-config/default-ssl /etc/nginx/sites-available/default-ssl
 RUN mkdir -p /home/app
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
 ##################### INSTALLATION END #####################
 
 RUN echo 'nginx:' `nginx -v`

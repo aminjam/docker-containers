@@ -1,15 +1,7 @@
-FROM ubuntu:latest
+FROM node:4
 MAINTAINER Amin Jams <aminjam@outlook.com>
 
-RUN apt-get update && \
-  apt-get -y upgrade && \
-  apt-get autoremove && \
-  apt-get autoclean && \
-  apt-get clean
-RUN apt-get install -qy curl git g++ make
-RUN curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
-RUN apt-get install -qy nodejs
-RUN npm install -g npm
+RUN apt-get update
 RUN npm install -g bower grunt-cli node-gyp
 
 # Install Supervisor

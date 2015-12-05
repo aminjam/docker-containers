@@ -6,7 +6,7 @@ This container is using [supervisord](http://supervisord.org/) for auto-restarti
 
 ### Base Docker Image & Size
 
-* `latest` tag ~`467MB` from  [ubuntu:latest](https://registry.hub.docker.com/_/ubuntu/)
+* `latest` tag ~`691MB` from  [node:4](https://hub.docker.com/_/node/)
 
 ### Usage `docker run`
     -v <source-files-dir>:/home/app -d aminjam/nodejs
@@ -15,9 +15,9 @@ This command executes `start-app.sh` script:
 
 ```
 cd /home/app/
-npm install --production
+npm install --production && npm rebuild
 bower install --config.interactive=false --allow-root
-PORT=3001 npm start
+PORT=3001 npm start --production
 ```
 #### w/ custom NODE_ENV
 

@@ -11,4 +11,4 @@ This container only display static html content.
 ### Usage `docker run`
 You can optionally pass `ro` (read-only) flag for added security.
 
-    -v <static-files-dir>:/home/app:ro -d aminjam/nginx-proxy
+    -v <static-files-dir>:/home/app:ro -d aminjam/nginx-static
